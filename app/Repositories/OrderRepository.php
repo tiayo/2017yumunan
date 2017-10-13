@@ -105,4 +105,18 @@ class OrderRepository
             ->where('id', $id)
             ->update($data);
     }
+
+    public function sumByNum()
+    {
+        return $this->order
+            ->whereIn('status', [0,1])
+            ->sum('num');
+    }
+
+    public function countStatus($status)
+    {
+        return $this->order
+            ->where('status', $status)
+            ->count();
+    }
 }

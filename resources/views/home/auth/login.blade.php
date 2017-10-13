@@ -100,7 +100,7 @@
         {{ csrf_field() }}
         <div id="login-dialog">
             <div id="user">
-                <input type="email" name="email" placeholder="请输入登录邮箱"/>
+                <input type="text" name="username" placeholder="请输入身份证、手机其中之一"/>
             </div>
             <div id="password">
                 <input type="password" name="password" placeholder="请输入密码"/>

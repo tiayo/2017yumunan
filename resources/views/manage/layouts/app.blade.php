@@ -35,9 +35,9 @@
 
         <!--logo and iconic logo start-->
         <div class="logo text-center">
-            <h2 style="color: #fff;">{{ config('site.title') }}</h2>
+            {{--<h2 style="color: #fff;">{{ config('site.title') }}</h2>--}}
             {{--<a href="/"></a>--}}
-            {{--<img style="width:200px" src="http://www.startce.com/skin/zd/images/logo_2.png" alt="">--}}
+            <img style="width:200px" src="http://www.startce.com/skin/zd/images/logo_2.png" alt="">
         </div>
 
         <div class="logo-icon text-center">
@@ -108,7 +108,7 @@
         <!--body wrapper end-->
 
         <!--footer section start-->
-        <footer style="bottom: 0;position: fixed;">Copyright © 2015 - {{ date('Y') }} 商城系统 All Rights Reserved  <strong>v1.0</strong></footer>
+        <footer style="bottom: 0;position: fixed;">Copyright © 2015 - {{ date('Y') }} {{ config('site.title') }} All Rights Reserved  <strong>v1.0</strong></footer>
         <!--footer section end-->
 
 

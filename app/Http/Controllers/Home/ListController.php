@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\CategoryRepository;
+use App\Repositories\RoomRepository;
 use App\Repositories\CommodityRepository;
 use App\Services\Home\IndexService;
-use App\Services\Manage\CategoryService;
+use App\Services\Manage\RoomService;
 
 class ListController extends Controller
 {
     protected $commodity, $category, $index;
 
     public function __construct(CommodityRepository $commodity,
-                                CategoryService $category,
+                                RoomService $category,
                                 IndexService $index)
     {
         $this->commodity = $commodity;

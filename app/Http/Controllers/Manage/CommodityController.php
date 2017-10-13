@@ -3,22 +3,19 @@
 namespace App\Http\Controllers\Manage;
 
 use App\Http\Controllers\Controller;
-use App\Services\Manage\CategoryService;
 use App\Services\Manage\CommodityService;
-use App\Services\Manage\ManagerService;
 use Illuminate\Http\Request;
 
 class CommodityController extends Controller
 {
     protected $commodity;
     protected $request;
-    protected $category;
 
-    public function __construct(CommodityService $commodity, Request $request, CategoryService $category)
+
+    public function __construct(CommodityService $commodity, Request $request)
     {
         $this->commodity = $commodity;
         $this->request = $request;
-        $this->category = $category;
     }
 
     /**
@@ -44,10 +41,7 @@ class CommodityController extends Controller
      */
     public function addView()
     {
-        $categories = $this->category->getSimple('id', 'name');
-
         return view('manage.commodity.add_or_update', [
-            'lists' => $categories,
             'old_input' => $this->request->session()->get('_old_input'),
             'url' => Route('commodity_add'),
             'sign' => 'add',
@@ -61,8 +55,6 @@ class CommodityController extends Controller
      */
     public function updateView($id)
     {
-        $categories = $this->category->getSimple('id', 'name');
-
         try {
             $old_input = $this->request->session()->has('_old_input') ?
                 session('_old_input') : $this->commodity->first($id);
@@ -71,7 +63,6 @@ class CommodityController extends Controller
         }
 
         return view('manage.commodity.add_or_update', [
-            'lists' => $categories,
             'old_input' => $old_input,
             'url' => Route('commodity_update', ['id' => $id]),
             'sign' => 'update',
@@ -86,11 +77,8 @@ class CommodityController extends Controller
     public function post($id = null)
     {
         $this->validate($this->request, [
-            'category_id' => 'required|integer',
             'name' => 'required',
             'price' => 'required|numeric',
-            'stock' => 'required',
-            'unit' => 'required',
             'description' => 'required',
             'type' => 'required|integer',
         ]);

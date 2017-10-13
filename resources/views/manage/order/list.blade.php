@@ -44,12 +44,11 @@
 		                <tr>
 		                    <th>ID</th>
 		                    <th>用户</th>
-		                    <th>商品</th>
-		                    <th>地址</th>
-		                    <th>电话</th>
+		                    <th>客房</th>
+		                    <th>房号</th>
+		                    <th>天数</th>
+                            <th>电话</th>
                             <th>价格</th>
-                            <th>寄送方式</th>
-                            <th>运送编号</th>
                             <th>订单状态</th>
                             <th>更新时间</th>
                             <th>创建时间</th>
@@ -62,16 +61,15 @@
                             <tr>
                                 <td>{{ $list['id'] }}</td>
                                 <td>{{ $list->user->name }}</td>
+                                <td>{{ $list->commodity->name }}</td>
                                 <td>
-                                    @foreach($list->orderDetail as $list_detail)
-                                        {{ $list_detail->commodity->name }} <br>
+                                    @foreach($list->orderDetail as $detail)
+                                        {{ $detail->room->num }}|
                                     @endforeach
                                 </td>
-                                <td>{{ $list['address'] }}</td>
-                                <td>{{ $list['phone'] }}</td>
+                                <td>{{ $list['day'] }}</td>
+                                <td>{{ $list->user->phone }}</td>
                                 <td>￥{{ $list['price'] }}</td>
-                                <td>{{ config('site.order_type')[$list['type']] }}</td>
-                                <td>{{ $list['tracking'] }}</td>
                                 <td style="color: red">
                                     {{ config('site.order_status')[$list['status']] }}
                                 </td>

@@ -52,15 +52,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="phone" class="col-sm-2 col-sm-2 control-label">默认手机</label>
+                        <label for="phone" class="col-sm-2 col-sm-2 control-label">手机</label>
                         <div class="col-sm-3">
-                            <input type="number" class="form-control" id="phone" name="phone" value="{{ $old_input['phone'] }}">
+                            <input type="number" class="form-control" id="phone" name="phone" value="{{ $old_input['phone'] }}" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="address" class="col-sm-2 col-sm-2 control-label">默认地址</label>
+                        <label for="address" class="col-sm-2 col-sm-2 control-label">地址</label>
                         <div class="col-sm-3">
                             <input type="text" class="form-control" id="address" name="address" value="{{ $old_input['address'] }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_number" class="col-sm-2 col-sm-2 control-label">身份证</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="id_number" name="id_number" value="{{ $old_input['id_number'] }}" required>
                         </div>
                     </div>
                     <div class="form-group">

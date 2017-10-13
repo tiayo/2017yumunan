@@ -16,12 +16,11 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('name');
-            $table->string('address');
+            $table->string('commodity_id');
+            $table->string('room_id');
+            $table->integer('num'); //房间数
+            $table->integer('day'); //入住天数
             $table->string('phone');
-            $table->float('price');
-            $table->integer('type'); //寄送方式
-            $table->string('tracking')->nullable(); //如果是快递的话
             $table->integer('status')->default(0); //订单状态
             $table->string('remark')->nulladble(); //备注
             $table->timestamps();

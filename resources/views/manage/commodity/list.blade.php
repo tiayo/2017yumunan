@@ -1,14 +1,14 @@
 @extends('manage.layouts.app')
 
-@section('title', '商品管理')
+@section('title', '客房管理')
 
 @section('style')
     @parent
 @endsection
 
 @section('breadcrumb')
-    <li navValue="nav_1"><a href="#">商品管理</a></li>
-    <li navValue="nav_1_1"><a href="#">商品管理</a></li>
+    <li navValue="nav_1"><a href="#">客房管理</a></li>
+    <li navValue="nav_1_1"><a href="#">客房类型</a></li>
 @endsection
 
 @section('body')
@@ -25,17 +25,15 @@
                     <button type="submit" class="btn btn-primary" id="salesman_search">搜索</button>
                 </form>
             <header class="panel-heading">
-                商品列表
+                客房类型列表
             </header>
             	<table class="table table-striped table-hover">
 		            <thead>
 		                <tr>
 		                    <th>ID</th>
-		                    <th>分类</th>
 		                    <th>名称</th>
 		                    <th>价格</th>
-		                    <th>库存</th>
-                            <th>计量单位</th>
+		                    <th>数量</th>
                             <th>状态</th>
                             <th>分组</th>
                             <th>更新时间</th>
@@ -47,17 +45,15 @@
                         @foreach($lists as $list)
                         <tr>
                             <td>{{ $list['id'] }}</td>
-                            <td>{{ $list->category->name }}</td>
                             <td>{{ $list['name'] }}</td>
                             <td>{{ $list['price'] }}</td>
-                            <td>{{ $list['stock'] }}</td>
-                            <td>{{ $list['unit'] }}</td>
+                            <td>{{ $list->room->where('status', 1)->count() }}</td>
                             <td>{{ config('site.commodity_status')[$list['status']] }}</td>
                             <td>{{ config('site.commodity_type')[$list['type']] }}</td>
                             <td>{{ $list['updated_at'] }}</td>
                             <td>
                                 <button class="btn btn-warning" type="button" onclick="location='{{ route('commodity_status', ['id' => $list['id'] ]) }}'">上架/下架</button>
-                                <button class="btn btn-success" type="button" onclick="location='{{ route('commodity_image', ['id' => $list['id'] ]) }}'">商品图片</button>
+                                <button class="btn btn-success" type="button" onclick="location='{{ route('commodity_image', ['id' => $list['id'] ]) }}'">客房图片</button>
                                 <button class="btn btn-info" type="button" onclick="location='{{ route('commodity_update', ['id' => $list['id'] ]) }}'">编辑</button>
                                 <button class="btn btn-danger" type="button" onclick="javascript:if(confirm('确实要删除吗?'))location='{{ route('commodity_destroy', ['id' => $list['id'] ]) }}'">删除</button>
                             </td>

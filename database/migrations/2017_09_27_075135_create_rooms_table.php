@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttributesTable extends Migration
+class CreateRoomsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateAttributesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attributes', function (Blueprint $table) {
+        Schema::create('rooms', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id');
-            $table->string('name'); //属性名
-            $table->string('alias'); //别名
-            $table->string('value'); //属性值
-            $table->integer('status')->default(1); //默认：1（可用）
+            $table->string('num'); //房号
+            $table->integer('status')->default(0);
+            $table->integer('commodity_id');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateAttributesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('rooms');
     }
 }

@@ -33,7 +33,7 @@ class UserRepository
     }
 
     /**
-     * 获取显示的搜索结果
+     * 获取显示的搜索结果(模糊搜索)
      *
      * @param $num
      * @param $keyword
@@ -44,10 +44,26 @@ class UserRepository
         return $this->user
             ->where(function ($query) use ($keyword) {
                 $query->where('users.name', 'like', "%$keyword%")
-                    ->orwhere('users.email', 'like', "%$keyword%");
+                    ->orwhere('users.email', 'like', "%$keyword%")
+                    ->orwhere('users.phone', 'like', "%$keyword%")
+                    ->orwhere('users.id_number', 'like', "%$keyword%");
             })
             ->orderBy('id', 'desc')
             ->paginate($num);
+    }
+
+    /**
+     * 获取显示的搜索结果(精确搜索)
+     *
+     * @param $num
+     * @param $keyword
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function getSearchFirst($keyword)
+    {
+        return $this->user
+            ->where('users.id_number', $keyword)
+            ->first();
     }
 
     public function first($id)

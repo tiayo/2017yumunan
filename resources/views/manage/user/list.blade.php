@@ -34,6 +34,7 @@
 		                    <th>姓名</th>
 		                    <th>邮箱</th>
 		                    <th>电话</th>
+		                    <th>身份证</th>
                             <th>地址</th>
                             <th>状态</th>
                             <th>注册时间</th>
@@ -48,6 +49,7 @@
                             <td>{{ $list['name'] }}</td>
                             <td>{{ $list['email'] }}</td>
                             <td>{{ $list['phone'] }}</td>
+                            <td>{{ $list['id_number'] }}</td>
                             <td>{{ $list['address'] }}</td>
                             <td>{{ config('site.user_status')[$list['status']] }}</td>
                             <td>{{ $list['created_at'] }}</td>

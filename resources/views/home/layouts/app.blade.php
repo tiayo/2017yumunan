@@ -1,5 +1,3 @@
-@inject('index', 'App\Services\Home\IndexService')
-@inject('car', 'App\Services\Home\CarService')
 <!DOCTYPE html>
 <html lang="en">
 <head>

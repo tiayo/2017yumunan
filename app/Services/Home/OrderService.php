@@ -10,16 +10,12 @@ use Exception;
 
 class OrderService
 {
-    protected $order, $car, $orderDetail, $commodity;
+    protected $order, $orderDetail, $commodity;
 
     public function __construct(OrderRepository $order,
-                                CarService $car,
-                                OrderDetailRepository $orderDetail,
                                 CommodityRepository $commodity)
     {
         $this->order = $order;
-        $this->car = $car;
-        $this->orderDetail = $orderDetail;
         $this->commodity = $commodity;
     }
 

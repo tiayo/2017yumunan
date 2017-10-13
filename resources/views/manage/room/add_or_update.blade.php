@@ -33,36 +33,45 @@
             <div class="panel-body">
                 <form id="form" class="form-horizontal adminex-form" method="post" action="{{ $url }}">
                     {{ csrf_field() }}
+
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 col-sm-2 control-label">名称</label>
+                        <label for="num" class="col-sm-2 col-sm-2 control-label">名称</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="name" name="name" value="{{ $old_input['name'] }}" required>
+                            <input type="text" class="form-control" id="num" name="num" value="{{ $old_input['num'] }}" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="parent_id" class="col-sm-2 col-sm-2 control-label">上级</label>
-                        <div class="col-sm-3">
-                            <select class="form-control" id="parent_id" name="parent_id">
 
-                                {{--原栏目--}}
-                                @if(!empty($old_input['parent_id']))
-                                    @foreach($lists as $list)
-                                        @if($list['id'] == $old_input['parent_id'])
-                                            <option value="{{ $list['id'] }}">{{ $list['name'] }}</option>
-                                            @php
-                                                break;
-                                            @endphp
-                                        @endif
-                                    @endforeach
+                    <div class="form-group">
+                        <label for="commodity_id" class="col-sm-2 col-sm-2 control-label">房型</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" id="commodity_id" name="commodity_id">
+                                @if(isset($old_input['commodity_id']))
+                                    <option value="{{ $old_input['commodity_id'] }}">不修改</option>
                                 @endif
 
-                                <option value="0">顶级栏目</option>
-                                @foreach($lists as $list)
-                                    <option value="{{ $list['id'] }}">{{ $list['name'] }}</option>
+                                @foreach($commodities as $commodity)
+                                    <option value="{{ $commodity->id }}">{{ $commodity->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="status" class="col-sm-2 col-sm-2 control-label">房型</label>
+                        <div class="col-sm-3">
+                            <select class="form-control" id="status" name="status">
+                                @if(isset($old_input['status']))
+                                    <option value="{{ $old_input['status'] }}">
+                                        {{ config('site.room_status')[$old_input['status']] }}
+                                    </option>
+                                @endif
+                                @foreach(config('site.room_status') as $key => $status)
+                                    <option value="{{ $key }}">{{ $status }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div  class="col-sm-2 col-sm-2 control-label">
                             <button class="btn btn-success" type="submit"><i class="fa fa-cloud-upload"></i> 确认提交</button>

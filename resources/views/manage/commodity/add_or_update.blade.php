@@ -1,6 +1,6 @@
 @extends('manage.layouts.app')
 
-@section('title', '添加/管理服务项目')
+@section('title', '添加/管理客房类型')
 
 @section('style')
     @parent
@@ -12,7 +12,7 @@
 
 @section('breadcrumb')
     <li navValue="nav_1"><a href="#">管理专区</a></li>
-    <li navValue="nav_1_2"><a href="#">添加/管理服务项目</a></li>
+    <li navValue="nav_1_2"><a href="#">添加/管理客房类型</a></li>
 @endsection
 
 @section('body')
@@ -32,21 +32,11 @@
 
         <section class="panel">
             <header class="panel-heading">
-                添加/管理服务项目
+                添加/管理客房类型
             </header>
             <div class="panel-body">
                 <form id="form" class="form-horizontal adminex-form" method="post" action="{{ $url }}">
                     {{ csrf_field() }}
-                    <div class="form-group">
-                        <label for="category_id" class="col-sm-2 col-sm-2 control-label">分类</label>
-                        <div class="col-sm-3">
-                            <select class="form-control" id="category_id" name="category_id">
-                                @foreach($lists as $list)
-                                    <option value="{{ $list['id'] }}">{{ $list['name'] }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label for="type" class="col-sm-2 col-sm-2 control-label">分组</label>
                         <div class="col-sm-3">
@@ -67,18 +57,6 @@
                         <label for="price" class="col-sm-2 col-sm-2 control-label">价格</label>
                         <div class="col-sm-3">
                             <input type="number" class="form-control" id="price" name="price" value="{{ $old_input['price'] }}" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="stock" class="col-sm-2 col-sm-2 control-label">库存</label>
-                        <div class="col-sm-3">
-                            <input type="number" class="form-control" id="stock" name="stock" value="{{ $old_input['stock'] }}" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="unit" class="col-sm-2 col-sm-2 control-label">计量单位</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" id="unit" name="unit" value="{{ $old_input['unit'] }}" required>
                         </div>
                     </div>
                     <div class="form-group">

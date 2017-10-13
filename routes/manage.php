@@ -12,14 +12,14 @@ $this->group(['namespace' => 'Manage', 'prefix' => 'manage'], function () {
 
         //管理员才可以操作
         $this->group(['middleware' => 'admin'], function () {
-            //分类相关
-            $this->get('/category/list/', 'CategoryController@listView')->name('category_list');
-            $this->get('/category/list/{keyword}', 'CategoryController@listView')->name('category_search');
-            $this->get('/category/add', 'CategoryController@addView')->name('category_add');
-            $this->post('/category/add', 'CategoryController@post');
-            $this->get('/category/update/{id}', 'CategoryController@updateView')->name('category_update');
-            $this->post('/category/update/{id}', 'CategoryController@post');
-            $this->get('/category/destroy/{id}', 'CategoryController@destroy')->name('category_destroy');
+            //房间相关
+            $this->get('/room/list/', 'RoomController@listView')->name('room_list');
+            $this->get('/room/list/{keyword}', 'RoomController@listView')->name('room_search');
+            $this->get('/room/add', 'RoomController@addView')->name('room_add');
+            $this->post('/room/add', 'RoomController@post');
+            $this->get('/room/update/{id}', 'RoomController@updateView')->name('room_update');
+            $this->post('/room/update/{id}', 'RoomController@post');
+            $this->get('/room/destroy/{id}', 'RoomController@destroy')->name('room_destroy');
 
             //商品相关
             $this->get('/commodity/list/', 'CommodityController@listView')->name('commodity_list');
@@ -33,14 +33,6 @@ $this->group(['namespace' => 'Manage', 'prefix' => 'manage'], function () {
             $this->get('/commodity/image/{id}', 'CommodityController@uploadImage')->name('commodity_image');
             $this->post('/commodity/image/{id}', 'CommodityController@uploadImagePost');
 
-            //属性相关
-            $this->get('/attribute/list/{category_id}', 'AttributeController@listView')->name('attribute_list');
-            $this->get('/attribute/add/{category_id}', 'AttributeController@addView')->name('attribute_add');
-            $this->post('/attribute/add/{category_id}', 'AttributeController@addPost');
-            $this->get('/attribute/update/{id}', 'AttributeController@updateView')->name('attribute_update');
-            $this->post('/attribute/update/{id}', 'AttributeController@updatePost');
-            $this->get('/attribute/destroy/{id}', 'AttributeController@destroy')->name('attribute_destroy');
-
             //会员相关
             $this->get('/user/list/', 'UserController@listView')->name('user_list');
             $this->get('/user/list/{keyword}', 'UserController@listView')->name('user_search');
@@ -52,7 +44,9 @@ $this->group(['namespace' => 'Manage', 'prefix' => 'manage'], function () {
             $this->get('/order/list/', 'OrderController@listView')->name('order_list');
             $this->get('/order/list/{keyword}', 'OrderController@listView')->name('order_search');
             $this->get('/order/update/{order_id}', 'OrderController@updateView')->name('order_update');
-            $this->post('/order/update/{order_id}', 'OrderController@updatePost');
+            $this->post('/order/update/{order_id}', 'OrderController@post');
+            $this->get('/order/add', 'OrderController@addView')->name('order_add');
+            $this->post('/order/add', 'OrderController@post');
             $this->get('/order/destroy/{order_id}', 'OrderController@destroy')->name('order_destroy');
             $this->get('/order/status/{order_id}/{status}', 'OrderController@changeStatus')->name('order_status');
         });

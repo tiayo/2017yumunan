@@ -2,16 +2,16 @@
 
 namespace App\Services\Manage;
 
-use App\Repositories\CategoryRepository;
+use App\Repositories\RoomRepository;
 use Exception;
 
-class CategoryService
+class RoomService
 {
-    protected $category;
+    protected $room;
 
-    public function __construct(CategoryRepository $category)
+    public function __construct(RoomRepository $room)
     {
-        $this->category = $category;
+        $this->room = $room;
     }
 
     /**
@@ -24,7 +24,7 @@ class CategoryService
      */
     public function validata($id)
     {
-        $salesman = $this->category->first($id);
+        $salesman = $this->room->first($id);
 
         throw_if(empty($salesman), Exception::class, '未找到该记录！', 404);
 
@@ -41,10 +41,10 @@ class CategoryService
     public function get($num = 10000, $keyword = null)
     {
         if (!empty($keyword)) {
-            return $this->category->getSearch($num, $keyword);
+            return $this->room->getSearch($num, $keyword);
         }
 
-        return $this->category->get($num);
+        return $this->room->get($num);
     }
 
     /**
@@ -54,7 +54,7 @@ class CategoryService
      */
     public function getParent()
     {
-        return $this->category->getParent();
+        return $this->room->getParent();
     }
 
     /**
@@ -65,7 +65,7 @@ class CategoryService
      */
     public function getSimple(...$select)
     {
-        return $this->category->getSimple(...$select);
+        return $this->room->getSimple(...$select);
     }
 
     /**
@@ -89,11 +89,12 @@ class CategoryService
     public function updateOrCreate($post, $id = null)
     {
         //统计数据
-        $data['name'] = $post['name'];
-        $data['parent_id'] = $post['parent_id'];
+        $data['num'] = $post['num'];
+        $data['commodity_id'] = $post['commodity_id'];
+        $data['status'] = $post['status'];
 
         //执行插入或更新
-        return empty($id) ? $this->category->create($data) : $this->category->update($id, $data);
+        return empty($id) ? $this->room->create($data) : $this->room->update($id, $data);
     }
 
     /**
@@ -108,6 +109,6 @@ class CategoryService
         $this->validata($id)->toArray();
 
         //执行删除
-        return $this->category->destroy($id);
+        return $this->room->destroy($id);
     }
 }

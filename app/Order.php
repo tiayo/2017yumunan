@@ -8,18 +8,22 @@ class Order extends Model
 {
     protected $fillable = [
         'user_id',
-        'name',
-        'address',
-        'phone',
+        'commodity_id',
+        'num',
+        'day',
         'price',
-        'type',
-        'tracking',
-        'status'
+        'status',
+        'remark'
     ];
 
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function commodity()
+    {
+        return $this->belongsTo('App\Commodity');
     }
 
     public function orderDetail()

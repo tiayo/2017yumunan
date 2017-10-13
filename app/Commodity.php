@@ -24,8 +24,8 @@ class Commodity extends Model
         'image_8',
     ];
 
-    public function category()
+    public function room()
     {
-        return $this->belongsTo('App\Category');
+        return $this->hasMany('App\Room');
     }
 }

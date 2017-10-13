@@ -2,16 +2,15 @@
 
 namespace App\Repositories;
 
-use App\Car;
-use Illuminate\Support\Facades\Auth;
+use App\Room;
 
-class CarRepository
+class RoomRepository
 {
-    protected $car;
+    protected $room;
 
-    public function __construct(Car $car)
+    public function __construct(Room $room)
     {
-        $this->car = $car;
+        $this->room = $room;
     }
 
     /**
@@ -22,7 +21,7 @@ class CarRepository
      */
     public function create($data)
     {
-        return $this->car->create($data);
+        return $this->room->create($data);
     }
 
     /**
@@ -32,33 +31,25 @@ class CarRepository
      * @param $num
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function get()
+    public function get($num)
     {
-        return $this->car
-            ->where('user_id', Auth::id())
+        return $this->room
             ->orderBy('id', 'desc')
-            ->get();
-    }
-
-    public function getAvalible()
-    {
-        return $this->car
-            ->where('user_id', Auth::id())
-            ->where('status', 1)
-            ->orderBy('id', 'desc')
-            ->get();
+            ->paginate($num);
     }
 
     /**
-     * 统计数量
+     * 获取所有显示顶级分类
      *
-     * @return mixed
+     * @param $page
+     * @param $num
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function count()
+    public function getParent()
     {
-        return $this->car
-            ->where('user_id', Auth::id())
-            ->count();
+        return $this->room
+            ->where('parent_id', 0)
+            ->get();
     }
 
     /**
@@ -69,12 +60,12 @@ class CarRepository
      */
     public function getSimple(...$select)
     {
-        return $this->car
+        return $this->room
             ->select($select)
             ->orderBy('id', 'desc')
             ->get();
     }
-
+    
     /**
      * 获取显示的搜索结果
      *
@@ -84,7 +75,7 @@ class CarRepository
      */
     public function getSearch($num, $keyword)
     {
-        return $this->car
+        return $this->room
             ->where(function ($query) use ($keyword) {
                 $query->where('categories.name', 'like', "%$keyword%");
             })
@@ -100,7 +91,7 @@ class CarRepository
      */
     public function first($id)
     {
-        return $this->car->find($id);
+        return $this->room->find($id);
     }
 
     /**
@@ -111,7 +102,7 @@ class CarRepository
      */
     public function destroy($id)
     {
-        return $this->car
+        return $this->room
             ->where('id', $id)
             ->delete();
     }
@@ -125,10 +116,34 @@ class CarRepository
      */
     public function selectFirst($where, ...$select)
     {
-        return $this->car
+        return $this->room
             ->select($select)
             ->where($where)
             ->first();
+    }
+
+    /**
+     * 获取多条记录（带where和select）
+     *
+     * @param $where
+     * @param array ...$select
+     * @return mixed
+     */
+    public function selectGet($where, ...$select)
+    {
+        return $this->room
+            ->select($select)
+            ->where($where)
+            ->get();
+    }
+
+    public function selectGetLimit($where, $limit, ...$select)
+    {
+        return $this->room
+            ->select($select)
+            ->where($where)
+            ->limit($limit)
+            ->get();
     }
 
     /**
@@ -140,30 +155,17 @@ class CarRepository
      */
     public function update($id, $data)
     {
-        return $this->car
+        return $this->room
             ->where('id', $id)
             ->update($data);
     }
 
-    /**
-     * 更新记录
-     *
-     * @param $where
-     * @param $data
-     * @return mixed
-     */
-    public function updateWhere($where, $data)
+    public function selectGetNum($where, $num, ...$select)
     {
-        return $this->car
+        return $this->room
+            ->select($select)
             ->where($where)
-            ->update($data);
-    }
-
-    public function destroyWhere($where)
-    {
-        return $this->car
-            ->where('user_id', Auth::id())
-            ->where($where)
-            ->delete();
+            ->limit($num)
+            ->get();
     }
 }

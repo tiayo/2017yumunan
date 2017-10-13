@@ -109,11 +109,8 @@ class CommodityService
     public function updateOrCreate($post, $id = null)
     {
         //统计数据
-        $data['category_id'] = $post['category_id'];
         $data['name'] = $post['name'];
         $data['price'] = $post['price'];
-        $data['stock'] = $post['stock'];
-        $data['unit'] = $post['unit'];
         $data['description'] = $post['description'];
         $data['type'] = $post['type'];
 

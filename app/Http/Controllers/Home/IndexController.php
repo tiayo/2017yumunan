@@ -6,16 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Services\Home\CarService;
 use App\Services\Home\IndexService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
     protected $index;
-    protected $car;
 
-    public function __construct(IndexService $index, CarService $car)
+    public function __construct(IndexService $index)
     {
         $this->index = $index;
-        $this->car = $car;
     }
 
     public function index()
@@ -23,12 +22,8 @@ class IndexController extends Controller
         //今日推荐
         $recommend_today = $this->index->getByType(0, 10);
 
-        //购物车数量
-        $car_count = $this->car->count();
-
         return view('home.index.index', [
             'recommend_today' => $recommend_today,
-            'car_count' => $car_count,
         ]);
     }
 

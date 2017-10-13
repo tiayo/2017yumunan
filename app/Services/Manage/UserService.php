@@ -60,6 +60,7 @@ class UserService
         //统计数据
         $data['name'] = $post['name'];
         $data['email'] = $post['email'];
+        $data['id_number'] = $post['id_number'];
 
         empty($post['phone']) ? true : $data['phone'] = $post['phone'];
         empty($post['address']) ? true : $data['address'] = $post['address'];

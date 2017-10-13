@@ -17,9 +17,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone')->unique();
+            $table->string('id_number')->unique();//身份证号码
             $table->string('password');
             $table->string('avatar')->default('/style/media/image/user.jpg');
-            $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->integer('status')->default(1);
             $table->rememberToken();

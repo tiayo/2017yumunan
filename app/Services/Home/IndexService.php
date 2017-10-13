@@ -2,17 +2,16 @@
 
 namespace App\Services\Home;
 
-use App\Repositories\CategoryRepository;
+use App\Repositories\RoomRepository;
 use App\Repositories\CommodityRepository;
 
 class IndexService
 {
-    protected $commodity, $category;
+    protected $commodity;
 
-    public function __construct(CommodityRepository $commodity, CategoryRepository $category)
+    public function __construct(CommodityRepository $commodity)
     {
         $this->commodity = $commodity;
-        $this->category = $category;
     }
 
     /**

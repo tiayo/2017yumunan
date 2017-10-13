@@ -114,18 +114,6 @@ class CommodityRepository
     }
 
     /**
-     * 自减
-     *
-     * @param $num
-     * @return int
-     */
-    public function decrement($num)
-    {
-        return $this->commodity
-            ->decrement('stock', $num);
-    }
-
-    /**
      * 获取符合要求的商品
      *
      * @param $type
@@ -188,5 +176,12 @@ class CommodityRepository
             ->select($select)
             ->where($where)
             ->get();
+    }
+
+    public function sumByStock()
+    {
+        return $this->commodity
+            ->whereIn('status', [0,1])
+            ->sum('stock');
     }
 }

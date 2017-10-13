@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Manage;
 
 use App\Http\Controllers\Controller;
-use App\Services\Manage\CategoryService;
+use App\Services\Manage\CommodityService;
+use App\Services\Manage\RoomService;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class RoomController extends Controller
 {
-    protected $category;
+    protected $room, $commodity;
     protected $request;
 
-    public function __construct(CategoryService $category, Request $request)
+    public function __construct(RoomService $room, Request $request, CommodityService $commodity)
     {
-        $this->category = $category;
+        $this->room = $room;
         $this->request = $request;
+        $this->commodity = $commodity;
     }
 
     /**
@@ -27,10 +29,10 @@ class CategoryController extends Controller
     {
         $num = config('site.list_num');
 
-        $categories = $this->category->get($num, $keyword);
+        $rooms = $this->room->get($num, $keyword);
 
-        return view('manage.category.list', [
-            'lists' => $categories,
+        return view('manage.room.list', [
+            'lists' => $rooms,
         ]);
     }
 
@@ -41,12 +43,12 @@ class CategoryController extends Controller
      */
     public function addView()
     {
-        $categories = $this->category->getParent();
+        $commodities = $this->commodity->getSimple('*');
 
-        return view('manage.category.add_or_update', [
-            'lists' => $categories,
+        return view('manage.room.add_or_update', [
+            'commodities' => $commodities,
             'old_input' => $this->request->session()->get('_old_input'),
-            'url' => Route('category_add'),
+            'url' => Route('room_add'),
             'sign' => 'add',
         ]);
     }
@@ -59,19 +61,19 @@ class CategoryController extends Controller
      */
     public function updateView($id)
     {
-        $categories = $this->category->getParent();
+        $commodities = $this->commodity->getSimple('*');
 
         try {
             $old_input = $this->request->session()->has('_old_input') ?
-                session('_old_input') : $this->category->first($id);
+                session('_old_input') : $this->room->first($id);
         } catch (\Exception $e) {
             return response($e->getMessage(), $e->getCode());
         }
 
-        return view('manage.category.add_or_update', [
-            'lists' => $categories,
+        return view('manage.room.add_or_update', [
+            'commodities' => $commodities,
             'old_input' => $old_input,
-            'url' => Route('category_update', ['id' => $id]),
+            'url' => Route('room_update', ['id' => $id]),
             'sign' => 'update',
         ]);
     }
@@ -85,17 +87,18 @@ class CategoryController extends Controller
     public function post($id = null)
     {
         $this->validate($this->request, [
-            'name' => 'required',
-            'parent_id' => 'required|integer',
+            'num' => 'required',
+            'commodity_id' => 'required|integer',
+            'status' => 'required|integer',
         ]);
 
         try {
-            $this->category->updateOrCreate($this->request->all(), $id);
+            $this->room->updateOrCreate($this->request->all(), $id);
         } catch (\Exception $e) {
             return response($e->getMessage());
         }
 
-        return redirect()->route('category_list');
+        return redirect()->route('room_list');
     }
 
     /**
@@ -107,11 +110,11 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         try {
-            $this->category->destroy($id);
+            $this->room->destroy($id);
         } catch (\Exception $e) {
             return response($e->getMessage(), 500);
         }
 
-        return redirect()->route('category_list');
+        return redirect()->route('room_list');
     }
 }
