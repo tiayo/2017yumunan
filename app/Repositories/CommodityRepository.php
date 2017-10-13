@@ -177,11 +177,4 @@ class CommodityRepository
             ->where($where)
             ->get();
     }
-
-    public function sumByStock()
-    {
-        return $this->commodity
-            ->whereIn('status', [0,1])
-            ->sum('stock');
-    }
 }

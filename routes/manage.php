@@ -49,6 +49,7 @@ $this->group(['namespace' => 'Manage', 'prefix' => 'manage'], function () {
             $this->post('/order/add', 'OrderController@post');
             $this->get('/order/destroy/{order_id}', 'OrderController@destroy')->name('order_destroy');
             $this->get('/order/status/{order_id}/{status}', 'OrderController@changeStatus')->name('order_status');
+            $this->get('/order_complet/list/', 'OrderCompletController@listView')->name('order_complet');
         });
     });
 });

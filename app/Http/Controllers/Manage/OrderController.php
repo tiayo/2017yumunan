@@ -117,11 +117,11 @@ class OrderController extends Controller
             ]);
         }
 
-//        try {
+        try {
             $this->order->updateOrCreate($this->request->all(), $order_id);
-//        } catch (\Exception $e) {
-//            return redirect()->back()->withErrors($e->getMessage())->withInput();
-//        }
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors($e->getMessage())->withInput();
+        }
 
         return redirect()->route('order_list');
     }

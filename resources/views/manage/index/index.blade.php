@@ -72,7 +72,7 @@
                                 <th>ID</th>
                                 <th>用户</th>
                                 <th>客房</th>
-                                <th>数量</th>
+                                <th>房号</th>
                                 <th>天数</th>
                                 <th>电话</th>
                                 <th>价格</th>
@@ -89,7 +89,11 @@
                                     <td>{{ $list['id'] }}</td>
                                     <td>{{ $list->user->name }}</td>
                                     <td>{{ $list->commodity->name }}</td>
-                                    <td>{{ $list['num'] }}</td>
+                                    <td>
+                                        @foreach($list->orderDetail as $detail)
+                                            {{ $detail->room->num }}|
+                                        @endforeach
+                                    </td>
                                     <td>{{ $list['day'] }}</td>
                                     <td>{{ $list->user->phone }}</td>
                                     <td>￥{{ $list['price'] }}</td>

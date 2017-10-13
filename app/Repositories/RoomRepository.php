@@ -146,6 +146,13 @@ class RoomRepository
             ->get();
     }
 
+    public function selectCount($where)
+    {
+        return $this->room
+            ->where($where)
+            ->count();
+    }
+
     /**
      * 更新记录
      *

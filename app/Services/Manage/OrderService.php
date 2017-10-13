@@ -2,8 +2,8 @@
 
 namespace App\Services\Manage;
 
-use App\Commodity;
 use App\Repositories\CommodityRepository;
+use App\Repositories\OrderCompletRepository;
 use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\RoomRepository;
@@ -12,19 +12,21 @@ use Exception;
 
 class OrderService
 {
-    protected $order, $user, $commodity, $room, $order_detail;
+    protected $order, $user, $commodity, $room, $order_detail, $order_complet;
 
     public function __construct(OrderRepository $order,
                                 UserRepository $user,
                                 CommodityRepository $commodity,
                                 RoomRepository $room,
-                                OrderDetailRepository $order_detail)
+                                OrderDetailRepository $order_detail,
+                                OrderCompletRepository $order_complet)
     {
         $this->order = $order;
         $this->user = $user;
         $this->commodity = $commodity;
         $this->room = $room;
         $this->order_detail = $order_detail;
+        $this->order_complet = $order_complet;
     }
 
     /**
@@ -87,13 +89,11 @@ class OrderService
         throw_if($status <= $order['status'], Exception::class, '您要修改的状态无效', 403);
 
         //判断订单状态是否可以修改
-        throw_if($order['status'] == 2 || $order['status'] == 3,
-            Exception::class, '该订单不可修改！', 403);
 
-        //释放房间
-        $this->order_detail->destroyWhere([
-            ['order_id', $order['id']]
-        ], $order['num']);
+        //完成或取消时删除订单
+        if($status == 2 || $status == 3) {
+            $this->destroy($order_id, $status);
+        }
 
         return $this->order->update($order_id, ['status' => $status]);
     }
@@ -137,7 +137,7 @@ class OrderService
         $data['commodity_id'] = $post['commodity_id'];
         $data['num'] = $num = $post['num'];
         $data['day'] = $post['day'];
-        $data['price'] = $commodity->price * $post['day'];
+        $data['price'] = $commodity->price * $post['day'] * $post['num'];
         $data['status'] = $post['status'];
         $data['remark'] = $post['remark'];
 
@@ -203,7 +203,7 @@ class OrderService
      * @param $post
      * @param $commodity
      * @param $id
-     * @param $value
+     * @param $value [更新前数据]
      * @return bool
      */
     public function judgeRoom($post, $commodity, $id, $value)
@@ -211,10 +211,10 @@ class OrderService
         if (empty($id)) {
             throw_if($commodity->room->where('status', 1)->count() < $post['num'],
                 Exception::class, '空余房间不足！', 403);
+        } else {
+            throw_if($commodity->room->where('status', 1)->count() + $value['num'] > $post['num'],
+                Exception::class, '空余房间不足！', 403);
         }
-
-        throw_if($commodity->room->where('status', 1)->count() - $value['num'] < $post['num'],
-            Exception::class, '空余房间不足！', 403);
 
         return true;
     }
@@ -257,10 +257,16 @@ class OrderService
      * @param $id
      * @return bool|null
      */
-    public function destroy($id)
+    public function destroy($id, $status = null)
     {
         //验证是否可以操作当前记录
         $value = $this->validata($id)->toArray();
+
+        //获取订单删除前状态
+        $status = empty($status) ? 3 : $status;
+
+        //转移订单到订单结束表
+        $this->order_complet->create($id, $status);
 
         //删除订单房间
         $this->order_detail->destroyWhere([

@@ -1,6 +1,6 @@
 @extends('manage.layouts.app')
 
-@section('title', '订单管理')
+@section('title', '结束订单')
 
 @section('style')
     @parent
@@ -8,7 +8,7 @@
 
 @section('breadcrumb')
         <li navValue="nav_3"><a href="#">订单管理</a></li>
-        <li navValue="nav_3_1"><a href="#">订单管理</a></li>
+        <li navValue="nav_3_3"><a href="#">结束订单</a></li>
 @endsection
 
 @section('body')
@@ -62,15 +62,7 @@
                                 <td>{{ $list['id'] }}</td>
                                 <td>{{ $list->user->name }}</td>
                                 <td>{{ $list->commodity->name }}</td>
-                                <td>
-                                    @foreach($list->orderDetail as $key => $detail)
-                                        {{ $detail->room->num }}
-
-                                        @if ($key + 1 < count($list->orderDetail))
-                                            |
-                                        @endif
-                                    @endforeach
-                                </td>
+                                <td>{{ $list['room'] }}</td>
                                 <td>{{ $list['day'] }}</td>
                                 <td>{{ $list->user->phone }}</td>
                                 <td>￥{{ $list['price'] }}</td>

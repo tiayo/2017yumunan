@@ -13,10 +13,11 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('order_complets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
             $table->string('commodity_id');
+            $table->string('room');
             $table->integer('num'); //房间数
             $table->integer('day'); //入住天数
             $table->float('price');
@@ -33,6 +34,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('order_complets');
     }
 }
