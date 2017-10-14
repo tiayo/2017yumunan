@@ -25,7 +25,7 @@
 
     <div class="form-signin" action="index.html">
         <div class="form-signin-heading text-center" style="color:#666;padding: 25px 15px 0">
-            <h3>{{ config('site.title')  }}</h3>
+            <h3 style="color: white">{{ config('site.title')  }}</h3>
         </div>
         <div class="login-wrap">
             <form method="post" action="{{ route('manage.login') }}">
@@ -48,7 +48,7 @@
                 </button>
             </form>
             <div class="registration">
-                帐号须由管理员注册！
+
             </div>
         </div>
     </div>

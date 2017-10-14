@@ -61,7 +61,7 @@ hr {
 .form-signin {
     max-width: 330px;
     margin: 100px auto;
-    background: #fff;
+    background: rgba(0,0,0,0.3);
     border-radius: 5px;
     -webkit-border-radius: 5px;
 }
