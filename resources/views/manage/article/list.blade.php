@@ -1,14 +1,14 @@
 @extends('manage.layouts.app')
 
-@section('title', '会员管理')
+@section('title', '文章管理')
 
 @section('style')
     @parent
 @endsection
 
 @section('breadcrumb')
-    <li navValue="nav_2"><a href="#">会员管理</a></li>
-    <li navValue="nav_2_1"><a href="#">会员管理</a></li>
+    <li navValue="nav_4"><a href="#">文章管理</a></li>
+    <li navValue="nav_4_1"><a href="#">文章管理</a></li>
 @endsection
 
 @section('body')
@@ -20,25 +20,22 @@
                     <div class="form-group">
                         <label class="sr-only" for="search"></label>
                         <input type="text" class="form-control" id="search" name="keyword"
-                               value="{{ Request::get('keyword') }}" placeholder="输入姓名、邮箱、手机、身份证" required>
+                               value="{{ Request::get('keyword') }}" placeholder="输入关键字" required>
                     </div>
                     <button type="submit" class="btn btn-primary" id="salesman_search">搜索</button>
                 </form>
             <header class="panel-heading">
-                会员列表
+                文章列表
             </header>
             	<table class="table table-striped table-hover">
 		            <thead>
 		                <tr>
 		                    <th>ID</th>
-		                    <th>姓名</th>
-		                    <th>邮箱</th>
-		                    <th>电话</th>
-		                    <th>身份证</th>
-                            <th>地址</th>
-                            <th>状态</th>
-                            <th>注册时间</th>
-							<th>操作</th>
+		                    <th>标题</th>
+		                    <th>分组</th>
+		                    <th>更新时间</th>
+		                    <th>创建时间</th>
+                            <th>操作</th>
 		                </tr>
 		            </thead>
 
@@ -46,16 +43,13 @@
                         @foreach($lists as $list)
                         <tr>
                             <td>{{ $list['id'] }}</td>
-                            <td>{{ $list['name'] }}</td>
-                            <td>{{ $list['email'] }}</td>
-                            <td>{{ $list['phone'] }}</td>
-                            <td>{{ $list['id_number'] }}</td>
-                            <td>{{ $list['address'] }}</td>
-                            <td>{{ config('site.user_status')[$list['status']] }}</td>
+                            <td>{{ $list['title'] }}</td>
+                            <td>{{ config('site.article_group')[$list['group']] }}</td>
+                            <td>{{ $list['updated_at'] }}</td>
                             <td>{{ $list['created_at'] }}</td>
                             <td>
-                                <button class="btn btn-info" type="button" onclick="location='{{ route('user_update', ['id' => $list['id'] ]) }}'">编辑</button>
-                                <button class="btn btn-danger" type="button" onclick="javascript:if(confirm('确实要删除吗?'))location='{{ route('user_destroy', ['id' => $list['id'] ]) }}'">删除</button>
+                                <button class="btn btn-info" type="button" onclick="location='{{ route('article_update', ['id' => $list['id'] ]) }}'">编辑</button>
+                                <button class="btn btn-danger" type="button" onclick="javascript:if(confirm('确实要删除吗?'))location='{{ route('article_destroy', ['id' => $list['id'] ]) }}'">删除</button>
                             </td>
                         </tr>
                         @endforeach
@@ -84,7 +78,7 @@
                     return false;
                 }
 
-                window.location = '{{ route('user_search', ['keyword' => '']) }}/' + stripscript(keyword);
+                window.location = '{{ route('article_search', ['keyword' => '']) }}/' + stripscript(keyword);
 
                 return false;
             });

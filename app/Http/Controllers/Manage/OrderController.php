@@ -24,11 +24,11 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function listView($order_id = null)
+    public function listView($keyword = null)
     {
         $num = config('site.list_num');
 
-        $orders = $this->order->get($num, $order_id);
+        $orders = $this->order->get($num, $keyword);
 
         return view('manage.order.list', [
             'lists' => $orders,

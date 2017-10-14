@@ -27,10 +27,10 @@ class OrderCompletService
      * @param null $keyword
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function get($num = 10000, $order_id = null)
+    public function get($num = 10000, $keyword = null)
     {
         if (!empty($keyword)) {
-            return $this->order_complet->getSearch($order_id);
+            return $this->order_complet->getSearch($keyword);
         }
 
         return $this->order_complet->get($num);

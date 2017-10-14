@@ -57,11 +57,16 @@ class OrderCompletRepository
      * @param $keyword
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getSearch($order_id)
+    public function getSearch($keyword)
     {
         return $this->orderComplet
-            ->where('id', $order_id)
-            ->get();
+            ->join('users', 'order_complets.user_id', 'users.id')
+            ->where('order_complets.id', $keyword)
+            ->orwhere('users.name', $keyword)
+            ->orwhere('users.phone', $keyword)
+            ->orwhere('users.email', $keyword)
+            ->orwhere('users.id_number', $keyword)
+            ->paginate(config('site.list_num'));
     }
 
 }

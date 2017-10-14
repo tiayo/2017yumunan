@@ -27,5 +27,12 @@
             <li id="nav_3_3"><a href="{{ route('order_complet') }}">结束订单</a></li>
         </ul>
     </li>
+
+    <li class="menu-list" id="nav_4"><a href=""><i class="fa fa-book"></i> <span>文章管理</span></a>
+        <ul class="sub-menu-list">
+            <li id="nav_4_1"><a href="{{ route('article_list') }}">文章管理</a></li>
+            <li id="nav_4_2"><a href="{{ route('article_add') }}">添加文章</a></li>
+        </ul>
+    </li>
 </ul>
 <!--sidebar nav end-->

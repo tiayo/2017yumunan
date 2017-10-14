@@ -53,10 +53,10 @@ class OrderService
      * @param null $keyword
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function get($num = 10000, $order_id = null)
+    public function get($num = 10000, $keyword = null)
     {
         if (!empty($keyword)) {
-            return $this->order->getSearch($order_id);
+            return $this->order->getSearch($keyword);
         }
 
         return $this->order->get($num);

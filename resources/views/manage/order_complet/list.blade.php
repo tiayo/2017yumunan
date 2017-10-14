@@ -32,12 +32,12 @@
                     <div class="form-group">
                         <label class="sr-only" for="search"></label>
                         <input type="text" class="form-control" id="search" name="keyword"
-                               value="{{ Request::get('keyword') }}" placeholder="输入订单号" required>
+                               value="{{ Request::get('keyword') }}" placeholder="输入订单号，客户姓名、电话、身份证、邮箱" required>
                     </div>
                     <button type="submit" class="btn btn-primary" id="salesman_search">搜索</button>
                 </form>
             <header class="panel-heading">
-                订单列表
+                结束订单列表
             </header>
             	<table class="table table-striped table-hover">
 		            <thead>
@@ -87,9 +87,6 @@
                                             @endforeach
                                         </ul>
                                     </div>
-
-                                        <button class="btn btn-info" type="button" onclick="location='{{ route('order_update', ['id' => $list['id'] ]) }}'">编辑</button>
-                                        <button class="btn btn-danger" type="button" onclick="javascript:if(confirm('确实要删除吗?'))location='{{ route('order_destroy', ['id' => $list['id'] ]) }}'">删除</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -118,7 +115,7 @@
                     return false;
                 }
 
-                window.location = '{{ route('order_search', ['keyword' => '']) }}/' + stripscript(keyword);
+                window.location = '{{ route('order_complet_search', ['keyword' => '']) }}/' + stripscript(keyword);
 
                 return false;
             });
