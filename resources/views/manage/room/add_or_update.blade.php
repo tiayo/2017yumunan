@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="commodity_id" class="col-sm-2 col-sm-2 control-label">房型</label>
+                        <label for="commodity_id" class="col-sm-2 col-sm-2 control-label">房号</label>
                         <div class="col-sm-3">
                             <select class="form-control" id="commodity_id" name="commodity_id">
                                 @if(isset($old_input['commodity_id']))
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="status" class="col-sm-2 col-sm-2 control-label">房型</label>
+                        <label for="status" class="col-sm-2 col-sm-2 control-label">状态</label>
                         <div class="col-sm-3">
                             <select class="form-control" id="status" name="status">
                                 @if(isset($old_input['status']))

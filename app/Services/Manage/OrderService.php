@@ -163,9 +163,12 @@ class OrderService
         $rooms = $this->order_detail->selectCount([['order_id', $id]]);
 
         //获取订单
-        $num = $this->order->selectFirst([
+        $order = $this->order->selectFirst([
             ['id', $id]
-        ], 'num')['num'];
+        ], 'num', 'commodity_id');
+
+        //订单房间数量
+        $num = $order['num'];
 
         //房间数并未修改
         if ($rooms == $num) {
@@ -174,14 +177,15 @@ class OrderService
 
         //房间需求减少
         if ($rooms > $num) {
-           return $this->order_detail->destroyWhere(['order', $id], $rooms - $num);
+            return $this->order_detail->destroyWhere(['order', $id], $rooms - $num);
         }
 
         //房间需求增长
         if ($rooms < $num) {
             //寻找空房
             $items = $this->room->selectGetLimit([
-                ['status', 1]
+                ['status', 1],
+                ['commodity_id', $order['commodity_id']],
             ], $num - $rooms, '*');
 
             foreach ($items as $item) {
@@ -212,7 +216,7 @@ class OrderService
             throw_if($commodity->room->where('status', 1)->count() < $post['num'],
                 Exception::class, '空余房间不足！', 403);
         } else {
-            throw_if($commodity->room->where('status', 1)->count() + $value['num'] > $post['num'],
+            throw_if($commodity->room->where('status', 1)->count() + $value['num'] < $post['num'],
                 Exception::class, '空余房间不足！', 403);
         }
 
