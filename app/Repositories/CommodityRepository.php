@@ -125,7 +125,7 @@ class CommodityRepository
         if ($type == 0) {
             return $this->commodity
                 ->where('status', 1)
-                ->where('type', '>', $type)
+                ->where('type', '>=', $type)
                 ->orderBy('created_at', 'desc')
                 ->limit($limit)
                 ->get();

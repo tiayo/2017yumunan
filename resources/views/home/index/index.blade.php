@@ -4,11 +4,6 @@
 
 @section('body')
     <div class="index clearfix">
-        <div class="search">
-            <a href="{{ route('home.category_list') }}" class="fenlei"></a>
-            <a href="{{ route('home.search') }}" class="search-input"><input type="text" placeholder="搜索礼品"/></a>
-            <a href="{{ route('home.car') }}" class="shopping-cartt"><em>{{ $car_count }}</em></a>
-        </div>
         <div class="swiper-container index-bigpic clearfix">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -24,25 +19,40 @@
             <!-- 分页器 -->
             <div class="swiper-pagination"></div>
         </div>
-        <div class="nav-top clearfix">
-            <a href="{{ route('home.category_group', ['id' => 1]) }}">精选产品</a>
-            <a href="{{ route('home.category_group', ['id' => 2]) }}">超值专区</a>
-            <a href="{{ route('home.category_group', ['id' => 3]) }}">大牌专区</a>
-            <a href="{{ route('home.category_group', ['id' => 4]) }}">折扣专区</a>
+        <div class="news clearfix">
+            <strong></strong>
+            <div class="swiper-containerNews clearfix">
+                <div class="swiper-wrapper news-list">
+                    @foreach($articles as $article)
+                        <div class="swiper-slide">
+                            <a href="{{ route('home.article', ['article_id' => $article['id']]) }}">{{ $article['title'] }}</a>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <a href="{{ route('home.article_list') }}">更多</a>
         </div>
         <div class="goods">
-            <b class="hot-exchange clearfix" style="width: 100%;padding-left: 1em;">今日推荐</b>
+            <b class="hot-exchange clearfix">
+                热销房型
+                <a href="classification-list.html">更多</a>
+            </b>
             <ul class="goods-con clearfix">
                 @foreach($recommend_today as $commodity)
                     <li>
-                        <a href="{{ route('home.commodity_view', ['id' => $commodity['id']]) }}">
-                            <h3>
-                                <img src="{{ $commodity['image_0'] }}" height="750" width="750"/>
-                            </h3>
+                        <a href="goods-details.html">
+                            <div id="picture">
+                                <div id="content">
+                                    @for($i=0; $i<9; $i++)
+                                        @if (!empty($commodity['image_'.$i]))
+                                            <img src="{{ $commodity['image_'.$i] }}"/>
+                                        @endif
+                                    @endfor
+                                </div>
+                            </div>
                             <h2>{{ $commodity['name'] }}</h2>
                             <strong class="price clearfix">
                                 <h4>{{ $commodity['price'] }}</h4>
-                                <!-- <h5><em>100</em>.00</h5> -->
                             </strong>
                         </a>
                     </li>
@@ -51,13 +61,11 @@
         </div>
         <div class="copyright">
             <h1>© {{ config('site.title') }} 版权所有</h1>
-            <h2>李艺芳提供技术支持</h2>
-        </div>
-        <div class="nav clearfix">
-            @include('home.layouts.sidebar')
         </div>
     </div>
-    <em class="return-top">顶部</em>
+    <div class="nav clearfix">
+        <a href="{{ route('home.person') }}"></a >
+    </div>
     <script type="text/javascript">
         var mySwiper = new Swiper ('.swiper-container', {
             direction: 'horizontal',

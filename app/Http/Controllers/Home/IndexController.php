@@ -19,11 +19,15 @@ class IndexController extends Controller
 
     public function index()
     {
-        //今日推荐
-        $recommend_today = $this->index->getByType(0, 10);
+        //热销房型
+        $recommend_today = $this->index->getByTypeCommodity(0, 10);
+
+        //天元头条
+        $articles = $this->index->getByGroupArticle(1, 3);
 
         return view('home.index.index', [
             'recommend_today' => $recommend_today,
+            'articles' => $articles,
         ]);
     }
 

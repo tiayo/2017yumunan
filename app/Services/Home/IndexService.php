@@ -2,16 +2,18 @@
 
 namespace App\Services\Home;
 
+use App\Repositories\ArticleRepository;
 use App\Repositories\RoomRepository;
 use App\Repositories\CommodityRepository;
 
 class IndexService
 {
-    protected $commodity;
+    protected $commodity, $article;
 
-    public function __construct(CommodityRepository $commodity)
+    public function __construct(CommodityRepository $commodity, ArticleRepository $article)
     {
         $this->commodity = $commodity;
+        $this->article = $article;
     }
 
     /**
@@ -21,9 +23,21 @@ class IndexService
      * @param $limit
      * @return mixed
      */
-    public function getByType($type, $limit)
+    public function getByTypeCommodity($type, $limit)
     {
         return $this->commodity->getByType($type, $limit);
+    }
+
+    /**
+     * 获取符合要求的文章
+     *
+     * @param $type
+     * @param $limit
+     * @return mixed
+     */
+    public function getByGroupArticle($type, $limit)
+    {
+        return $this->article->getByGroup($type, $limit);
     }
 
     /**

@@ -121,4 +121,28 @@ class ArticleRepository
             ->where('id', $id)
             ->update($data);
     }
+
+    /**
+     * 获取符合要求的商品
+     *
+     * @param $type
+     * @param $limit
+     * @return mixed
+     */
+    public function getByGroup($group, $limit)
+    {
+        if ($group == 0) {
+            return $this->article
+                ->where('group', '>=', $group)
+                ->orderBy('created_at', 'desc')
+                ->limit($limit)
+                ->get();
+        }
+
+        return $this->article
+            ->where('group', $group)
+            ->orderBy('created_at', 'desc')
+            ->limit($limit)
+            ->get();
+    }
 }

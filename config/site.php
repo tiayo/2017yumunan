@@ -4,7 +4,7 @@ return [
     'administrator' => env('SITE_ADMINISTRATE'),
     'upload_image_size' => 1024,
     'list_num' => env('SITE_LIST_NUM'),
-    'title' => '天元酒店管理系统', //网站标题
+    'title' => '天元酒店', //网站标题
     'order_status' => [ //订单状态
         0 => '预约',
         1 => '入住',
@@ -43,6 +43,7 @@ return [
     ],
     'article_group' => [
         0 => '普通文章',
-        1 => '精品文章',
+        1 => '天元头条',
+        2 => '客房服务',
     ],
 ];

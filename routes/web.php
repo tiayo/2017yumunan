@@ -19,6 +19,10 @@ $this->group(['namespace' => 'Home'], function () {
     $this->get('/category/{id}', 'ListController@view')->name('home.category_view');
     $this->get('/category/group/{id}', 'ListController@group')->name('home.category_group');
 
+    //文章相关
+    $this->get('article/list', 'ArticleController@listView')->name('home.article_list');
+    $this->get('article/{article_id}', 'ArticleController@articleView')->name('home.article');
+
     //登录后操作
     $this->group(['middleware' => 'user_auth'], function () {
         $this->get('/car/list', 'CarController@view')->name('home.car');
