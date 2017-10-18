@@ -51,7 +51,7 @@
             width: 74%;
             height: 45px;
             margin: 0 13% 10px;
-            background-color: #ffda44;
+            background-color: #69eaff;
             color: #fff;
             font-size: 16px;
             letter-spacing: 10px;
@@ -87,7 +87,7 @@
                 <input type="text" name="phone" placeholder="电话" />
             </div>
             <div id="password">
-                <input type="text" name="address" placeholder="地址" />
+                <input type="text" name="id_number" placeholder="身份证" />
             </div>
         </div>
         <button type="submit" id="registration-button">注册</button>

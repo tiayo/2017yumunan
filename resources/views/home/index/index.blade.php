@@ -35,7 +35,6 @@
         <div class="goods">
             <b class="hot-exchange clearfix">
                 热销房型
-                <a href="classification-list.html">更多</a>
             </b>
             <ul class="goods-con clearfix">
                 @foreach($recommend_today as $commodity)
