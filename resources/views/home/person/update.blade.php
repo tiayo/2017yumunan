@@ -101,9 +101,9 @@
             width: 50%;
             height: 40px;
             margin: 20px auto 0px;
-            background-color: #ffda44;
+            background-color: #69eaff;
             border-radius: 40px;
-            color: #333;
+            color: #666;
             font-size: 16px;
             font-weight: bold;
             text-align: center;

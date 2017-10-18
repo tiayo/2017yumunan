@@ -252,22 +252,21 @@ body {
 .pc .info {
     position: relative;
     width: 100%;
-    height: 150px;
-    margin-bottom: 10px;
-    background: #1e89e0;
+    height: 80px;
+    margin-bottom: 20px;
+    background: #69eaff;
     color: #fff;
+    box-shadow: 1px 1px 5px #000;
 }
 .pc .portrait {
     position: absolute;
     top: 20%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    left: 25px;
     width: 80px;
     height: 80px;
     border-radius: 50%;
     box-shadow: 1px 1px 5px #fff,
-                -1px -1px 5px #fff;
+    -1px -1px 5px #fff;
 }
 .pc .name {
     overflow: hidden;
@@ -275,10 +274,8 @@ body {
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
     position: absolute;
-    top: 115px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    top: 50px;
+    left: 90px;
     width: 30%;
     color: #333;
     font-weight: bold;
@@ -305,10 +302,11 @@ body {
 .pc .order-nav {
     height: 45px;
     background-color: #fff;
+    box-shadow: 1px 1px 5px #000;
 }
 .pc .order-nav li {
     float: left;
-    width: 25%;
+    width: 33%;
     height: 100%;
     text-align: center;
     line-height: 45px;
@@ -320,7 +318,7 @@ body {
 .pc .content {
     position: fixed;
     overflow: scroll;
-    top: 251px;
+    top: 185px;
     bottom: 51px;
     width: 100%;
     margin-top: 10px;
@@ -352,9 +350,10 @@ body {
     height: auto;
     padding: 2%;
     margin-bottom: 0;
-    background: #fff;
+    background: #f5f5f5;
     border-top: 1px solid #e7e7e7;
     border-bottom: 1px solid #e7e7e7;
+    box-shadow: none;
 }
 .pc .content .con ul li .info .store-name {
     overflow: hidden;
@@ -367,45 +366,38 @@ body {
     text-align: center;
     line-height: 40px;
     box-shadow: 1px 1px 5px #999,
-                -1px -1px 5px #999;
+    -1px -1px 5px #999;
 }
 .pc .content .con ul li .info ul {
     padding: 5px 0;
+    background-color: #fff;
+    box-shadow: 1px 1px 5px #000;
 }
 .pc .content .con ul li .info ul li {
     float: left;
-    width: 49%;
-    height: 20px;
-    line-height: 20px;
+    width: 94%;
+    height: 35px;
+    padding: 0 3%;
+    line-height: 35px;
     margin-bottom: 5px;
     border-bottom: 0;
-    box-shadow: 1px 1px 5px #999,
-                -1px -1px 5px #999;
 }
-.pc .content .con ul li .info ul li:nth-child(2n+2) {
-    float: right;
-}
-.pc .content .con ul li .info ul li span {
+.pc .content .con ul li .info ul li em {
     float: left;
     height: 100%;
     color: #000;
 }
-.pc .content .con ul li .info ul li em {
+.pc .content .con ul li .info ul li span {
     float: right;
     height: 100%;
-    color: #999;
-    margin-right: 5px;
-}
-.pc .content .con ul li .info ul li strong {
-    float: right;
-    height: 100%;
-    color: #999;
+    color: #000;
 }
 .pc .content .con ul li h4 {
     float: left;
     width: 100%;
     height: 35px;
     color: #999;
+    background-color: #fff;
     margin-bottom: 10px;
     line-height: 35px;
     border-bottom: 1px solid #999;
@@ -415,369 +407,21 @@ body {
     height: 100%;
     padding-right: 4%;
 }
-.pc .content .con ul li h4 span em {
-    float: right;
-    padding-left: 20px;
-    background: url(../icon/icon_jifen.png) no-repeat 5px center;
+.pc .content .con ul li .combined {
+    float: left;
+    width: 100%;
+    height: 40px;
+    background: #fff url(../icon/icon_jifen.png) no-repeat 5px center;
     background-size: 13px;
     color: #e2302e;
     font-weight: bold;
-}
-.pc .nav a:nth-child(4) {
-    background: url(../icon/grzx2.png) no-repeat center 5px;
-    background-size: 25px;
-    color: #333;
-    font-weight: bold;
-}
-
-
-/*商品列表页面*/
-.classification-list {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-.classification-list .header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #e7e7e7;
-    z-index: 999;
-}
-.classification-list .header .search {
-    width: 90%;
-    height: 45px;
-    padding: 0 5%;
-    background: #1e89e0;
-}
-.classification-list .header .search .search-input {
-    float: left;
-    width: 100%;
-    height: 100%;
-}
-.classification-list .header .search .search-input input {
-    width: 100%;
-    height: 30px;
-    margin-top: 7px;
-    background-color: #fff;
-    border: 0;
-    border-radius: 4px;
-    outline: none;
-    font-size: 14px;
-    text-align: center;
-    line-height: 25px;
-}
-.classification-list .header .classification-list-nav {
-    display: none;
-    width: 100%;
-    height: 50px;
-    background-color: #404042;
-    z-index: 999999;
-}
-.classification-list .header .classification-list-nav a {
-    float: left;
-    width: 25%;
-    height: 50px;
-    color: #666;
-    font-size: 12px;
-    text-align: center;
-    line-height: 75px;
-}
-.classification-list .header .classification-list-nav a:nth-child(1) {
-    background: url(../icon/zhuye.png) no-repeat 50% 5px;
-    background-size: 25px;
-}
-.classification-list .header .classification-list-nav a:nth-child(2) {
-    background: url(../icon/fenlei2.png) no-repeat 50% 5px;
-    background-size: 25px;
-    color: red;
-}
-.classification-list .header .classification-list-nav a:nth-child(3) {
-    background: url(../icon/gwc.png) no-repeat 50% 5px;
-    background-size: 25px;
-}
-.classification-list .header .classification-list-nav a:nth-child(4) {
-    background: url(../icon/grzx.png) no-repeat 50% 5px;
-    background-size: 25px;
-}
-.classification-list .content {
-    position: fixed;
-    overflow: scroll;
-    top: 45px;
-    bottom: 55px;
-    width: 100%;
-}
-.classification-list .content .content-list {
-    float: left;
-    position: relative;
-    width: 50%;
-    height: 120px;
-    background-color: #fff;
-    box-shadow: 1px 1px 5px #999,
-                -1px -1px 5px #999;
-}
-.classification-list .content .content-list a {
-    float: left;
-    width: 100%;
-    height: 100%;
-}
-.classification-list .content .content-list a .pic {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    margin: 0 auto;
-    height: 60px;
-}
-.classification-list .content .content-list a .pic img {
-    float: left;
-    width: 100%;
-    height: 100%;
-}
-.classification-list .content .content-list a h2 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    position: absolute;
-    bottom: 20px;
-    left: 5px;
-    right: 5px;
-    margin: 0 auto;
-    height: 30px;
-    color: #000;
-    font-weight: bold;
-    font-size: 16px;
-    text-align: center;
-    line-height: 30px;
-}
-.classification-list .content .content-list a .price {
-    position: absolute;
-    bottom: 5px;
-    left: 27px;
-    right: 27px;
-    height: 15px;
-    margin: 0 auto;
-    color: #999;
-    font-size: 14px;
-    text-align: center;
-    line-height: 15px;
-}
-.classification-list .content .content-list a .price span {
-    float: left;
-    height: 100%;
-    padding: 0 5px;
-    border-right: 1px solid #999;
-    font-size: 12px;
-    text-align: left;
-}
-.classification-list .content .content-list a .price em {
-    float: left;
-    height: 100%;
-    padding-left: 5px;
-    font-size: 12px;
-    text-align: left;
-}
-.classification-list h4 {
-    width: 100%;
-    height: 40px;
-    background-color: #fff;
-    color: #666;
-    font-size: 12px;
-    text-align: center;
     line-height: 40px;
+    box-shadow: 1px 1px 5px #000;
 }
-
-/*选择收货地址*/
-.address-choose .address-list {
-    padding-bottom: 45px;
-    background-color: #e7e7e7;
-}
-.address-choose .address-list li {
-    width: 90%;
-    padding: 3% 5% 0;
-    margin-bottom: 10px;
-    background-color: #fff;
-    border-top: 1px solid #e7e7e7;
-    border-bottom: 1px solid #e7e7e7;
-    box-shadow: 0px 1px rgba(0, 0, 0, 0.1);
-}
-.address-choose .address-list li .info {
-    position: relative;
-    width: 100%;
-    padding-bottom: 10px;
-    border-bottom: 1px dashed #d7d7d7;
-    color: #333;
-}
-.address-choose .address-list li .info h1 {
-    overflow: hidden;
-    white-space: nowrap;
-    -ms-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    width: 100%;
-    height: 25px;
-    font-size: 15px;
-    text-align: left;
-    line-height: 25px;
-}
-.address-choose .address-list li .info h1 span {
+.pc .content .con ul li .combined span {
     float: left;
     height: 100%;
-    padding-right: 20px;
-    text-align: center;
-    line-height: 25px;
-}
-.address-choose .address-list li .info h1 em {
-    float: left;
-    height: 100%;
-    text-align: center;
-    line-height: 25px;
-}
-.address-choose .address-list li .info h2 {
-    overflow: hidden;
-    float: left;
-    width: 79%;
-    height: 50px;
-    background-size: 15px;
-    font-size: 14px;
-    text-align: left;
-    line-height: 25px;
-}
-.address-choose .address-list li .info .choose {
-    position: absolute;
-    top: 30px;
-    right: 3%;
-    width: 45px;
-    height: 20px;
-    border: 2px solid #979797;
-    border-radius: 25px;
-    color: #666;
-    text-align: center;
-    line-height: 20px;
-}
-.address-choose .address-list li h3 {
-    width: 100%;
-    height: 39px;
-    color: #999;
-}
-.address-choose .address-list li h3 span {
-    float: left;
-    width: 83px;
-    height: 100%;
-    text-align: right;
-    line-height: 39px;
-}
-.address-choose .address-list li h3 span em {
-    float: left;
-    width: 17px;
-    height: 17px;
-    margin: 11px 6%;
-    background-color: #e7e7e7;
-    border-radius: 50%;
-}
-.address-choose .address-list li h3 span .default {
-    background: url(../icon/icon_xuanzhong.png) no-repeat center;
-    background-size: 100%;
-    color: #df1b19;
-}
-.address-choose .address-list li h3 a {
-    float: left;
-    height: 100%;
-    padding: 0 10px 0 30px;
-    margin-left: 35%;
-    background: url(../icon/icon_bianji.png) no-repeat 5px center;
-    background-size: 21px;
-    color: #999;
-    line-height: 39px;
-}
-.address-choose .address-list li h3 b {
-    float: left;
-    height: 100%;
-    padding-left: 30px;
-    background: url(../icon/delete-address.png) no-repeat 5px center;
-    background-size: 23px;
-    font-weight: normal;
-    line-height: 39px;
-}
-.address-choose .nav-bottom {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 45px;
-    background-color: #1e89e0;
-    color: #333;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    line-height: 45px;
-    z-index: 999;
-}
-.address-choose .nav-bottom a {
-    float: left;
-    width: 100%;
-    height: 100%;
-}
-.address-choose .delete-mask {
-    display: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999999;
-}
-.address-choose .delete-mask .delete-list {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 70%;
-    height: 100px;
-    background-color: #fff;
-    border-radius: 10px;
-    color: #000;
-    font-weight: bold;
-    text-align: center;
-    line-height: 70px;
-}
-.address-choose .delete-mask .delete-list .cancel-delete {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50%;
-    height: 40px;
-    box-shadow: 1px -1px #e7e7e7;
-    color: #535353;
-    font-weight: normal;
-    text-align: center;
-    line-height: 40px;
-}
-.address-choose .delete-mask .delete-list .confirm-delete {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 50%;
-    height: 40px;
-    box-shadow: 0px -1px #e7e7e7;
-    color: #e2302e;
-    font-weight: normal;
-    text-align: center;
-    line-height: 40px;
-}
-@media (max-width:320px) {
-    .address-choose .address-list li .info h1 em {
-        padding-right: 4%;
-    }
-    .address-choose .address-list li h3 span {
-        width: 30%;
-    }
-    .address-choose .address-list li h3 a {
-        margin-left: 22%;
-    }
+    margin-left: 20px;
 }
 
 /*添加新地址*/
@@ -1049,7 +693,7 @@ body {
     width: 70%;
     height: 25px;
     margin-top: 5px;
-    margin-left: 20px;
+    margin-left: 34px;
     outline: none;
     line-height: 25px;
 }
@@ -1090,48 +734,24 @@ body {
     width: 100%;
     height: 30px;
     color: #333;
-    box-shadow: 0px 1px #999;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
     line-height: 25px;
-}
-.goods-settlement .content .info ul {
-    margin-top: 10px;
+    border-bottom: 1px dashed #999;
 }
 .goods-settlement .content .info ul li {
-    padding: 0 10px;
-    height: 25px;
-    line-height: 25px;
+    height: 35px;
+    font-size: 16px;
+    line-height: 35px;
+    box-shadow: 0px 1px #999;
 }
 .goods-settlement .content .info ul li span {
-    float: left;
-    height: 100%;
-}
-.goods-settlement .content .info ul li strong {
     float: right;
     height: 100%;
-    margin-right: 15px;
-}
-.goods-settlement .content .info ul li em {
-    float: right;
-    height: 100%;
-}
-.goods-settlement .content .courier {
-    float: left;
-    width: 94%;
-    height: 45px;
-    padding: 0 3%;
-    background-color: #fff;
-    border-bottom: 1px solid #e7e7e7;
     color: #999;
-    line-height: 45px;
 }
-.goods-settlement .content .courier em {
-    float: right;
-    color: #333;
-}
-.goods-settlement .nav-bottom {
+.nav-bottom {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -1165,7 +785,7 @@ body {
     float: right;
     width: 30%;
     height: 45px;
-    background-color: #1e89e0;
+    background-color: #69eaff;
     color: #fff;
     font-size: 15px;
     font-weight: bold;

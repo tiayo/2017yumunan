@@ -40,7 +40,7 @@
             <ul class="goods-con clearfix">
                 @foreach($recommend_today as $commodity)
                     <li>
-                        <a href="goods-details.html">
+                        <a href="{{ route('home.commodity_view', ['comodity_id' => $commodity['id']]) }}">
                             <div id="picture">
                                 <div id="content">
                                     @for($i=0; $i<9; $i++)

@@ -123,7 +123,7 @@ class OrderController extends Controller
             return redirect()->back()->withErrors($e->getMessage())->withInput();
         }
 
-        return redirect()->route('order_list');
+        return can('admin') ? redirect()->route('order_list') : redirect()->route('home.person');
     }
 
     /**

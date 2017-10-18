@@ -31,7 +31,7 @@ $this->group(['namespace' => 'Home'], function () {
         $this->post('/car/update', 'CarController@update')->name('home.car_update');
 
         //添加订单
-        $this->get('/order/add', 'OrderController@addView')->name('home.order_add');
+        $this->get('/order/add/{commodity_id}', 'OrderController@addView')->name('home.order_add');
         $this->get('/order/addPost', 'OrderController@addPost')->name('home.order_add_post');
 
         //修改收货信息

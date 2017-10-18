@@ -29,17 +29,13 @@ class PersonController extends Controller
         //待发货
         $orders_1 = $this->order->get(1);
 
-        //待收货
-        $orders_2 = $this->order->get(2);
-
         //已完成
-        $orders_4 = $this->order->get(4);
+        $orders_2 = $this->order->get(2);
 
         return view('home.person.view', [
             'orders_all' => $orders_all,
             'orders_1' => $orders_1,
             'orders_2' => $orders_2,
-            'orders_4' => $orders_4,
         ]);
     }
 

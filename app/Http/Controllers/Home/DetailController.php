@@ -8,12 +8,11 @@ use App\Services\Manage\CommodityService;
 
 class DetailController extends Controller
 {
-    protected $commodity, $attribute;
+    protected $commodity;
 
-    public function __construct(CommodityService $commodity, AttributeRepository $attribute)
+    public function __construct(CommodityService $commodity)
     {
         $this->commodity = $commodity;
-        $this->attribute = $attribute;
     }
 
     /**
@@ -27,18 +26,8 @@ class DetailController extends Controller
         //获取当前商品信息
         $commodity = $this->commodity->first($id);
 
-        //随机获取商品
-        $rand_commodity  = $this->commodity->randCommodity();
-
-        //获取属性
-        $attributes = $this->attribute->selectGet([
-            ['category_id', $commodity['category_id']],
-        ], '*');
-
         return view('home.detail.detail', [
             'commodity' => $commodity,
-            'rand_commodity' => $rand_commodity,
-            'attributes' => $attributes
         ]);
     }
 }
