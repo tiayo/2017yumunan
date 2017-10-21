@@ -24,7 +24,7 @@ input, select, textarea {
 }
 
 a {
-    color: #65CEA7;
+    color: #666;
 }
 
 a:focus, a:active, a:hover {
@@ -544,7 +544,6 @@ h5.left-nav-title {
 
 .header-section {
     background: #fff;
-    border-bottom: 1px solid #eff0f4;
 }
 
 .header-section::after {
@@ -841,7 +840,7 @@ h5.left-nav-title {
 
 .sticky-header .logo {
     position: fixed;
-    top: 0;
+    top: 60px;
     left: 0;
     width: 240px;
     z-index: 100;
@@ -856,9 +855,9 @@ h5.left-nav-title {
 .sticky-header .header-section {
     position: fixed;
     top: 0;
-    left: 240px;
     width: 100%;
     z-index: 100;
+    background: #004E90;
 }
 
 .sticky-header .main-content {
@@ -866,7 +865,7 @@ h5.left-nav-title {
 }
 
 .sticky-header .menu-right {
-    margin-right: 255px;
+    line-height:44px;
 }
 
 .sticky-header.left-side-collapsed .header-section {

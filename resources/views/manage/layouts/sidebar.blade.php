@@ -1,5 +1,5 @@
 <!--sidebar nav start-->
-<ul style="margin-top:100px;" class="nav nav-pills nav-stacked custom-nav">
+<ul style="margin-top:44px;border-top:1px solid #999 " class="nav nav-pills nav-stacked custom-nav">
     <li class="menu-list" id="nav_0"><a href=""><i class="fa fa-home"></i> <span>房间管理</span></a>
         <ul class="sub-menu-list">
             <li id="nav_0_1"><a href=" {{ route('room_list') }} ">房间管理</a></li>

@@ -25,25 +25,36 @@
   <script src="{{ asset('/static/adminex/js/html5shiv.js') }}"></script>
   <script src="{{ asset('/static/adminex/js/respond.min.js') }}"></script>
   <![endif]-->
+    <style>
+        .nav-stacked>li {
+            border-bottom: 1px solid #999;
+        }
+    </style>
 </head>
 
 <body class="sticky-header">
 
 <section>
+    <!-- header section start-->
+    <div class="header-section">
+        <!--toggle button start-->
+        <span style="color: #fff;line-height: 44px;padding-left: 1em;">
+            {{ config('site.title') }} - 管理后台
+        </span>
+        <!--toggle button end-->
+        <div class="menu-right">
+            <ul class="notification-menu">
+                <li>
+
+                </li>
+                <li><a style="color: #fff" href="{{ route('manage.logout') }}" class="btn">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- header section end-->
+
     <!-- left side start-->
     <div class="left-side sticky-left-side">
-
-        <!--logo and iconic logo start-->
-        <div class="logo text-center">
-            {{--<h2 style="color: #fff;">{{ config('site.title') }}</h2>--}}
-            {{--<a href="/"></a>--}}
-            <img style="width:200px" src="http://www.startce.com/skin/zd/images/logo_2.png" alt="">
-        </div>
-
-        <div class="logo-icon text-center">
-            <a href="/"></a>
-        </div>
-        <!--logo and iconic logo end-->
         <div class="left-side-inner">
             @include('manage.layouts.sidebar')
         </div>
@@ -53,45 +64,15 @@
     <!-- main content start-->
     <div class="main-content" >
 
-        <!-- header section start-->
-        <div class="header-section">
-            <!--toggle button start-->
-            <a class="toggle-btn"><i class="fa fa-bars"></i></a>
-            <!--toggle button end-->
-            <!--search start-->
-            {{--<form class="searchform" id="searchform_id">--}}
-                {{--<input type="text" class="form-control" name="keyword" value="" placeholder="Search here..." />--}}
-            {{--</form>--}}
-            <!--search end-->
-            <div class="menu-right">
-                <ul class="notification-menu">
-                    <li>
-
-                    </li>
-                    <li>
-                        <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            当前帐号:
-                            {{ Auth::guard()->user()['name'] }}
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                            <li><a href="{{ route('manage.logout') }}"><i class="fa fa-sign-out"></i>退出登录</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-        <!-- header section end-->
-
         <!--body wrapper start-->
         <div class="wrapper">
             {{--面包屑开始--}}
             <div class="row">
                 <div class="col-md-12">
                     <!--breadcrumbs start -->
-                    <ul class="breadcrumb panel">
-                        <li><a href="{{ route('manage') }}"><i class="fa fa-home"></i>主页</a></li>
+                    <ul class="breadcrumb panel" style="float: left">
+                        导航栏：
+                        <li><a href="{{ route('manage') }}">主页</a></li>
                         @section('breadcrumb')
 
                         @show
@@ -108,7 +89,7 @@
         <!--body wrapper end-->
 
         <!--footer section start-->
-        <footer style="bottom: 0;position: fixed;">Copyright © 2015 - {{ date('Y') }} {{ config('site.title') }} All Rights Reserved  <strong>v1.0</strong></footer>
+        <footer style="bottom: 0;position: fixed;">Copyright © {{ date('Y') }} {{ config('site.title') }} All Rights Reserved  <strong>v1.0</strong></footer>
         <!--footer section end-->
 
 
