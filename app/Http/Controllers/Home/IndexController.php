@@ -23,7 +23,7 @@ class IndexController extends Controller
         $recommend_today = $this->index->getByTypeCommodity(0, 10);
 
         //天元头条
-        $articles = $this->index->getByGroupArticle(1, 3);
+        $articles = $this->index->getByGroupArticle(0, 3);
 
         return view('home.index.index', [
             'recommend_today' => $recommend_today,
